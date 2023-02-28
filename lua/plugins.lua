@@ -12,4 +12,14 @@ return require('packer').startup(function(use)
 		requires = { 'nvim-tree/nvim-web-devicons' },
 		tag = 'nightly'
 	}
+
+	-- color scheme
+	use 'sainnhe/everforest'
+
+	-- text
+	use 'rmagatti/alternate-toggler'
+	use 'windwp/nvim-autopairs'
+	use 'mg979/vim-visual-multi'
+	use 'gcmt/wildfire.vim'
+	use 'tpope/vim-surround'
 end)
