@@ -1,4 +1,5 @@
 require('base')
+require('maps')
 require('plugins')
 require('p-mason')
 require('p-lsp')
