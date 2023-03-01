@@ -1,11 +1,4 @@
-local opt = vim.opt
-
-opt.number = true
-opt.relativenumber = true
-
-opt.tabstop = 2
-vim.opt.termguicolors = true
-
+require('base')
 require('plugins')
 require('p-mason')
 require('p-lsp')
