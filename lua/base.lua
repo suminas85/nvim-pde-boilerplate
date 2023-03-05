@@ -43,6 +43,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end
 })
 
-
 opt.updatetime = 300
 opt.timeoutlen = 500
