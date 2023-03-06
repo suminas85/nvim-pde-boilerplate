@@ -46,5 +46,20 @@ require('mason-lspconfig').setup_handlers({
         }
       }
     }))
+  end,
+  tsserver = function()
+    require('typescript').setup({
+      server = vim.tbl_extend('force', lsp_config, {
+        on_attach = function(_, bufnr)
+          on_attach(_, bufnr)
+        end,
+        init_options = {
+          preferences = {
+            importModuleSpecifierPreference = 'project=relative',
+            jsxAttributeCompletionStyle = 'none'
+          }
+        }
+      })
+    })
   end
 })
