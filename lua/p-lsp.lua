@@ -2,7 +2,7 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 
-local on_attach = function(_, bufnr)
+local on_attach = function(_, bufnr, isTsserver)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', bufopts)
   vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, bufopts)
@@ -18,6 +18,9 @@ local on_attach = function(_, bufnr)
     group = vim.api.nvim_create_augroup('LspFormatting', { clear = true }),
     buffer = bufnr,
     callback = function()
+      if isTsserver == true then
+        require('typescript').actions.removeUnused({ sync = true })
+      end
       vim.lsp.buf.format()
     end
   })
@@ -51,7 +54,7 @@ require('mason-lspconfig').setup_handlers({
     require('typescript').setup({
       server = vim.tbl_extend('force', lsp_config, {
         on_attach = function(_, bufnr)
-          on_attach(_, bufnr)
+          on_attach(_, bufnr, true)
         end,
         init_options = {
           preferences = {
@@ -63,3 +66,6 @@ require('mason-lspconfig').setup_handlers({
     })
   end
 })
+
+vim.keymap.set('n', '<leader>o', '<cmd>TypescriptOrganizeImports<cr>')
+vim.keymap.set('n', '<leader>a', '<cmd>TypescriptAddMissingImports<cr>')
