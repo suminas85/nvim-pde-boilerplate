@@ -50,4 +50,8 @@ return require('packer').startup(function(use)
   use 'windwp/nvim-ts-autotag'
   use 'p00f/nvim-ts-rainbow'
   use 'axelvc/template-string.nvim'
+  use {
+    'kevinhwang91/nvim-ufo',
+    requires = 'kevinhwang91/promise-async'
+  }
 end)
